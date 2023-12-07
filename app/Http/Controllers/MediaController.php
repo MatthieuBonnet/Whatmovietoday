@@ -15,6 +15,13 @@ class MediaController extends Controller
 // Exemple dans le contrôleur MediaController
 public function processForm(Request $request)
 {
+    $request->validate([
+        'titre' => 'required',
+        'categorie' => 'required',
+        'genre' => 'required',
+        'duree' => 'required',
+        'annee_sortie' => 'nullable|integer', // Ajoutez la règle nullable
+    ]);
     // Utilisation du modèle Media pour créer une nouvelle entrée
     Media::create([
         'titre' => $request->input('titre'),
