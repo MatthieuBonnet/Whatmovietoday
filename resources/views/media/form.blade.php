@@ -1,14 +1,12 @@
 <form action="{{ route('process-form') }}" method="post">
     @csrf
+    <label for="titre">Titre :</label>
+    <input type="text" name="titre" required>
+    <br>
 
-    <div class="mb-3">
-    <label for="titre" class="form-label">Titre :</label>
-    <input type="titre" class="form-control" id="titre"></div>
-  </div>
-   
-  <div class="mb-3">
+
     <label for="categorie">Catégorie :</label>
-  <select name ="categorie" class="form-select" >
+    <select name ="categorie" class="form-select" >
   <option value="1">Action</option>
   <option value="2">Aventure</option>
   <option value="3">Comédie</option>
@@ -25,26 +23,26 @@
   <option value="3">Guerre</option>
   <option value="3">Western</option>
 </select>
-</div>
-<div class="mb-3">
+    <br>
+
     <label for="genre">Genre :</label>
-  <select name ="genre" class="form-select" >
+    <select name ="genre" class="form-select" >
   <option value="1">Films</option>
   <option value="2">Series</option>
   <option value="3">Animés</option>
   <option value="3">Dessin-Animé</option>
 
 </select>
-</div>
+    <br>
+    
+    <label for="annee_sortie">Année de sortie :</label>
+    <input type="number" name="annee_sortie" required>
+    <br>
 
-  <div class="mb-3">
-    <label for="annee_sortie" class="form-label">Année de sortie :</label>
-    <input type="annee_sortie" class="form-control" id="annee_sortie">
-  </div>
-  <div class="mb-3">
-    <label for="duree" class="form-label">Durée :</label>
-    <input type="duree" class="form-control" id="duree">
-  </div>
-  <button type="submit">Ajouter à ma liste</button>
+    <label for="duree">Durée :</label>
+    <input type="number" name="duree" required>
+    <br>
+
+
+    <button type="submit">Ajouter</button>
 </form>
-
