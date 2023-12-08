@@ -14,6 +14,7 @@ class AvisController extends Controller
         $avis = Avis::with(['utilisateur', 'media'])->get();
         return view('avis', compact('avis'));
     }
+    
 
     public function createFormAvis()
     {
@@ -21,22 +22,21 @@ class AvisController extends Controller
         return view('createavis', compact('medias'));
     }
 
-    public function processForm(Request $request)
+    public function processFormAvis(Request $request)
     {
         $request->validate([
             'id_media' => 'required',
             'contenu_commentaire' => 'required',
             'note' => 'required',
         ]);
-
-        // Utilisation du modèle Avis pour créer une nouvelle entrée
-        Avis::create([
-            'id_media' => $request->input('id_media'),
+    
+        // Utilisez le modèle Avis pour créer une nouvelle entrée
+        Auth::user()->avis()->create([
+            'id_media' => $request->input('id_media'), // Assurez-vous que le nom du champ est correct
             'contenu_commentaire' => $request->input('contenu_commentaire'),
             'note' => $request->input('note'),
-            'id_utilisateur' => Auth::id(), // Enregistrez l'ID de l'utilisateur actuel
         ]);
-
+    
         return redirect('/')->with('success', 'Avis ajouté avec succès!');
     }
 }

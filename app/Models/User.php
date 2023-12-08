@@ -13,6 +13,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function avis()
+{
+    return $this->hasMany(Avis::class, 'id_utilisateur');
+}
     public function mediaList()
 {
     return $this->hasMany(Media::class);

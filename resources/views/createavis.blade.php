@@ -2,15 +2,17 @@
 
 @section('content')
     <div class="form-container">
-        <form action="{{ route('process-form') }}" method="post">
+        <form action="{{ route('avis.store') }}" method="post">
             @csrf
 
             <label for="id_media">Medias :</label>
-            <select name="id_medias" required>
-                @foreach($medias as $medias)
-                    <option value="{{ $medias->id }}">{{ $medias->titre }}</option>
-                @endforeach
-            </select>
+            <!-- Dans votre vue -->
+<select name="id_media" required>
+    @foreach($medias as $media)
+        <option value="{{ $media->id }}">{{ $media->titre }}</option>
+    @endforeach
+</select>
+
             <br>
 
             <label for="contenu_commentaire">Commentaire :</label>
@@ -28,7 +30,19 @@
             <button type="submit" class="button">Ajouter</button>
         </form>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 @endsection
+
+
 
 
 <style>
