@@ -33,6 +33,26 @@ public function processForm(Request $request)
 
     return redirect('/')->with('success', 'Media ajouté avec succès!');
 }
+public function mediaList()
+{
+    $mediaList = auth()->user()->mediaList;
+
+    // Récupérez le média ajouté (s'il y en a un) de la session
+    $addedMedia = session('media_added');
+
+    return view('media.list', compact('mediaList', 'addedMedia'));
+}
+public function addMedia(Request $request)
+{
+    $user = auth()->user();
+    
+    // Créez un nouveau média associé à l'utilisateur connecté
+    $media = $user->mediaList()->create(['title' => $request->input('title')]);
+
+    // Redirigez l'utilisateur vers la liste de médias mise à jour
+    return redirect()->route('media.list')->with('media_added', $media);
+}
+
 
 }
 

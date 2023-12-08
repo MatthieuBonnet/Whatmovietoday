@@ -46,10 +46,15 @@ Route::middleware([
     Route::put('/liste-media/{id}/vu', 'ListeMediaController@marquerCommeVu');
     // routes/web.php
 
-Route::get('/avis', [AvisController::class, 'index'])->name('avis');
-Route::get('/avis/create', [AvisController::class, 'create'])->name('avis.create');
+
 Route::post('/avis/store', [AvisController::class, 'store'])->name('avis.store');
 
+// ...
+
+Route::get('/avis/create', [AvisController::class, 'createFormAvis'])->name('avis.create');
+Route::post('/avis/store', [AvisController::class, 'processForm'])->name('avis.store');
+
+// ...
 
 
     Route::get('/form', [MediaController::class, 'createForm'])->name('create-media');
@@ -59,4 +64,8 @@ Route::post('/avis/store', [AvisController::class, 'store'])->name('avis.store')
 
     // La route de bienvenue après la connexion
     Route::get('/welcome', [HomeController::class, 'index'])->name('welcome');
+    // routes/web.php
+Route::get('/media-list', 'MediaController@mediaList')->name('media.list')->middleware('auth');
+Route::post('/add-media', 'MediaController@addMedia')->name('media.add')->middleware('auth');
+
 });

@@ -85,6 +85,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
                                 </li>
                             @endif
+                            
 
                         @else
                             <li class="nav-item">
@@ -109,6 +110,7 @@
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Déconnexion') }}
                                     </a>
+                                    
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

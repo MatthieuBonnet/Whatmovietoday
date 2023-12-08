@@ -13,6 +13,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function mediaList()
+{
+    return $this->hasMany(Media::class);
+}
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
