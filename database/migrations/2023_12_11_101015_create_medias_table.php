@@ -11,8 +11,13 @@ return new class extends Migration
 */
 public function up(): void
 {
-Schema::create('media', function (Blueprint $table) {
+Schema::create('medias', function (Blueprint $table) {
 $table->id();
+$table->unsignedBigInteger('id_utilisateur');
+$table->foreign('id_utilisateur')
+->references('id')
+->on('users')
+->onDelete('cascade');
 $table->string('titre');
 $table->string('categorie');
 $table->string('genre');
@@ -27,7 +32,7 @@ $table->timestamps(); // Ajout des colonnes created_at et updated_at
 */
 public function down(): void
 {
-Schema::dropIfExists('media');
+Schema::dropIfExists('medias');
 }
 };
 

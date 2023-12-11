@@ -45,6 +45,8 @@
                 width: 100%;
                 font-size: 10px;
             }
+            
+
         }
     </style>
 

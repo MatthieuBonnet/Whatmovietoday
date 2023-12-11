@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Historique extends Model
 {
     use HasFactory;
+    protected $table = 'listemedia';
 }

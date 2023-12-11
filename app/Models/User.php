@@ -17,6 +17,10 @@ class User extends Authenticatable
 {
     return $this->hasMany(Avis::class, 'id_utilisateur');
 }
+public function media()
+{
+    return $this->hasMany(Media::class, 'id_utilisateur');
+}
     public function mediaList()
 {
     return $this->hasMany(Media::class);

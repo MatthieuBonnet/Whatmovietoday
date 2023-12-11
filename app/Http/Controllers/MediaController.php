@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Media;
-use Illuminate\Pagination\Paginate;
+use Auth;
+
 
 class MediaController extends Controller
 {
@@ -24,7 +25,7 @@ public function processForm(Request $request)
         'annee_sortie' => 'nullable|integer', // Ajoutez la règle nullable
     ]);
     // Utilisation du modèle Media pour créer une nouvelle entrée
-    Media::create([
+    Auth::user()->media()->create([
         'titre' => $request->input('titre'),
         'categorie' => $request->input('categorie'),
         'genre' => $request->input('genre'),

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\avis;
 
 class Media extends Model
 {
-    public function owner()
-{
-    return $this->belongsTo(User::class, 'user_id');
-}
+    public function utilisateur()
+    {
+        return $this->belongsTo(User::class, 'id_utilisateur');
+    }
     use HasFactory;
 
     protected $table = 'medias';
@@ -22,6 +22,7 @@ class Media extends Model
         'genre',
         'duree',
         'annee_sortie',
+        'vue'
     ];
 }
 

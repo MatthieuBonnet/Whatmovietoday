@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\historiquecontroller;
 use App\Http\Controllers\AvisController;
 use App\Http\Controllers\MediaController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +42,7 @@ Route::middleware([
     Route::get('/liste', [ListeController::class, 'index'])->name('liste');
     Route::get('/historique', [historiquecontroller::class, 'index'])->name('historique');
     Route::get('/avis', [aviscontroller::class, 'index'])->name('avis');
-    Route::put('/liste-media/{id}/vu', 'ListeMediaController@marquerCommeVu');
+    
     // routes/web.php
 
 
@@ -59,7 +58,10 @@ Route::post('/avis/store', [AvisController::class, 'processFormAvis'])->name('av
 
     Route::get('/form', [MediaController::class, 'createForm'])->name('create-media');
     Route::post('/process-form', [MediaController::class, 'processForm'])->name('process-form');
-    Route::put('/listemedia/{id}/evue', 'ListeController@marquerCommeVu');
+    Route::put('/listemedia/{id}/update-vue', [ListeController::class, 'updateVue']);
+
+
+
 
     
 
