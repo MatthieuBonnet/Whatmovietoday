@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Avis;
 use App\Models\Media;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AvisController extends Controller
 {
@@ -18,7 +19,12 @@ class AvisController extends Controller
 
     public function createFormAvis()
     {
-        $medias = Media::all(); // Récupérez la liste des médias depuis la base de données
+        // Récupérez l'utilisateur actuel
+        $user = Auth::user();
+
+        // Récupérez la liste des médias de l'utilisateur depuis la base de données
+        $medias = Media::where('id_utilisateur', $user->id)->get();
+
         return view('createavis', compact('medias'));
     }
 
@@ -37,6 +43,6 @@ class AvisController extends Controller
             'note' => $request->input('note'),
         ]);
     
-        return redirect('/')->with('success', 'Avis ajouté avec succès!');
+        return Redirect::route('avis')->with('success', 'Avis ajouté avec succès!');
     }
 }

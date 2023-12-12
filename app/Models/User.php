@@ -70,4 +70,8 @@ public function media()
     protected $appends = [
         'profile_photo_url',
     ];
+    public function medias()
+    {
+        return $this->hasMany(Media::class, 'id_utilisateur');
+    }
 }

@@ -50,7 +50,7 @@
                                     <td>{{ $media->categorie }}</td>
                                     <td>{{ $media->genre }}</td>
                                     <td>{{ $media->annee_sortie }}</td>
-                                    <td>{{ $media->duree }} min</td>
+                                    <td>{{ $media->duree }} Minutes</td>
                                 </tr>
                             @endforeach
                         </tbody>

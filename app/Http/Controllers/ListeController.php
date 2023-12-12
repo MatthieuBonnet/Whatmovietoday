@@ -34,6 +34,6 @@ class ListeController extends Controller
         $media->increment('vue');
 
         // Retourne une redirection vers la page de liste avec un message de succès
-        return redirect()->route('liste')->with('success', 'Média marqué comme vu avec succès.');
+        return redirect()->route('liste')->with('success', 'Média ajouté à l\'historique  avec succès !');
     }
 }

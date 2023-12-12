@@ -87,6 +87,9 @@
                             <li>
                                 <a class="nav-link" href="{{ route('avis') }}">Avis</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('top-utilisateur') }}">Top</a>
+                            </li>
                             
                             @guest
                                 @if (Route::has('login'))

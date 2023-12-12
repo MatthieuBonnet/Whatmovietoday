@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\historiquecontroller;
 use App\Http\Controllers\AvisController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\TopUtilisateurController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,6 +60,11 @@ Route::post('/avis/store', [AvisController::class, 'processFormAvis'])->name('av
     Route::get('/form', [MediaController::class, 'createForm'])->name('create-media');
     Route::post('/process-form', [MediaController::class, 'processForm'])->name('process-form');
     Route::put('/listemedia/{id}/update-vue', [ListeController::class, 'updateVue']);
+    // routes/web.php
+
+
+    Route::get('/top-utilisateur', [TopUtilisateurController::class, 'index'])->name('top-utilisateur');
+
 
 
 

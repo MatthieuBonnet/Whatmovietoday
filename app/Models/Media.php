@@ -24,5 +24,9 @@ class Media extends Model
         'annee_sortie',
         'vue'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_utilisateur');
+    }
 }
 
