@@ -17,32 +17,50 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
-
         footer {
-            color: #fff;
-            padding: 0px;
-            text-align: left;
-            position: fixed;
-            bottom: -20px;
-            left: 0;
-            width: 100%;
-        }
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Couleur de fond de la barre de navigation */
+    padding: 0px 0; /* Espace autour du texte et des liens */
+}
+
+footer p {
+    margin: 0; /* Supprimer la marge par défaut du paragraphe */
+}
+
+nav ul {
+    list-style: none; /* Supprimer les puces de la liste */
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline; /* Afficher les éléments de la liste en ligne plutôt qu'en bloc */
+    margin-right: 20px; /* Espacement entre les éléments de la liste */
+}
+
+nav a {
+    text-decoration: none; /* Supprimer le soulignement des liens */
+    color: #fff;
+    font-weight: bold;
+}
+.custom-cursor {
+    cursor: url('{{ asset('img/curseur.png') }}') 16 16, auto;
+}
+
+/* Ajoutez des styles supplémentaires au besoin */
+
 
         @media only screen and (max-width: 600px) {
             /* Adjust styles for screens with a maximum width of 600px (typical for mobile devices) */
             body {
                 background-image: url('{{ asset('img/MobileToday.png') }}');
             }
-            footer {
-                color: #fff;
-                padding: 0px;
-                text-align: left;
-                position: fixed;
-                bottom: -20px;
-                left: 0;
-                width: 100%;
-                font-size: 10px;
-            }
+            
         }
     </style>
 
@@ -54,7 +72,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body >
     <div class="card-body">
         @if(isset($welcomeMessage))
             <p>{{ $welcomeMessage }}</p>
@@ -137,7 +155,15 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2023 WhatMovieToday. Tous droits réservés. | Crédits : BONNET Matthieu, VINCENT Chloé, DOMENICI Lhéo</p>
-    </footer>
+    <p>&copy; 2023 WhatMovieToday. Tous droits réservés. | Crédits : BONNET Matthieu, VINCENT Chloé, DOMENICI Lhéo</p>
+    <nav>
+        <ul>
+            <li><a href="apropos">À propos</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
+
+
 </body>
 </html>

@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>What movie today?</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="app.js" defer></script>
     @livewireStyles
 @livewireScripts
 
     <!-- Styles -->
     <style>
+        
+
         body {
+            
             margin: 0;
             padding: 0;
             height: 100%;
@@ -18,36 +24,48 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
-
         footer {
-            color: #fff;
-            padding: 0px;
-            text-align: left;
-            position: fixed;
-            bottom: -20px;
-            left: 0;
-            width: 100%;
-        }
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Couleur de fond de la barre de navigation */
+    padding: 0px 0; /* Espace autour du texte et des liens */
+}
+
+footer p {
+    margin: 0; /* Supprimer la marge par défaut du paragraphe */
+}
+
+nav ul {
+    list-style: none; /* Supprimer les puces de la liste */
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline; /* Afficher les éléments de la liste en ligne plutôt qu'en bloc */
+    margin-right: 20px; /* Espacement entre les éléments de la liste */
+}
+
+nav a {
+    text-decoration: none; /* Supprimer le soulignement des liens */
+    color: #fff;
+    font-weight: bold;
+}
+
 
         @media only screen and (max-width: 600px) {
             /* Adjust styles for screens with a maximum width of 600px (typical for mobile devices) */
             body {
                 background-image: url('{{ asset('img/MobileToday.png') }}');
             }
-
-            footer {
-                color: #fff;
-                padding: 0px;
-                text-align: left;
-                position: fixed;
-                bottom: -20px;
-                left: 0;
-                width: 100%;
-                font-size: 10px;
-            }
             
-
         }
+
+           
     </style>
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -56,7 +74,28 @@
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body >
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Information Importante !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Contenu de votre fenêtre modale -->
+                <p>Ce site est à but expérimental et peut contenir des bugs et des erreurs.</p>
+                <p>Nous vous remercions de votre compréhension.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuer quand même</button>
+                <!-- Autres boutons si nécessaire -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -135,8 +174,45 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- ... Votre contenu existant ... -->
+
+<!-- Ajoutez ceci à la fin du body -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Vérifiez si le cookie a été défini
+        if (document.cookie.indexOf("modalDisplayed=true") === -1) {
+            // Si le cookie n'existe pas, affichez la fenêtre modale
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+            myModal.show();
+
+            // Définissez le cookie pour indiquer que la fenêtre modale a été affichée
+            var expirationDate = new Date();
+            expirationDate.setTime(expirationDate.getTime() + (5 * 60 * 1000)); // 5 minutes
+            document.cookie = "modalDisplayed=true; expires=" + expirationDate.toUTCString();
+        } else {
+            // Si le cookie existe, vérifiez le temps écoulé depuis la dernière fois que la fenêtre modale a été affichée
+            var lastModalTime = new Date(document.cookie.replace(/(?:(?:^|.*;\s*)modalTime\s*=\s*([^;]*).*$)|^.*$/, "$1"));
+
+            // Si la période de 5 minutes n'est pas écoulée, ne montrez pas la fenêtre modale
+            if (new Date() - lastModalTime < (5 * 60 * 1000)) {
+                return;
+            }
+        }
+    });
+</script>
+
+</body>
+
+
+
 </body>
 <footer>
     <p>&copy; 2023 WhatMovieToday. Tous droits réservés. | Crédits : BONNET Matthieu, VINCENT Chloé, DOMENICI Lhéo</p>
+    <nav>
+        <ul>
+            <li><a href="apropos">À propos</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+    </nav>
 </footer>
 </html>

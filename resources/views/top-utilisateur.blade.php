@@ -1,7 +1,4 @@
-<!-- top-utilisateur/index.blade.php -->
-
 @extends('master')
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -29,7 +26,6 @@
                             </tbody>
                         </table>
 
-                        <!-- Ajouter un bouton ou un lien si nécessaire -->
                        
                     </div>
                 </div>
@@ -38,9 +34,7 @@
     </div>
 
     <style>
-        .container {
-            margin-top: 20px;
-        }
+        
 
         .card {
             margin-bottom: 20px;

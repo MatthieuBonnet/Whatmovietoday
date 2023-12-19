@@ -43,6 +43,8 @@ Route::middleware([
     Route::get('/liste', [ListeController::class, 'index'])->name('liste');
     Route::get('/historique', [historiquecontroller::class, 'index'])->name('historique');
     Route::get('/avis', [aviscontroller::class, 'index'])->name('avis');
+    Route::view('/apropos', 'apropos');
+    Route::view('/contact', 'contact');
     
     // routes/web.php
 

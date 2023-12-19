@@ -11,15 +11,20 @@ class ListeController extends Controller
 
 
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Récupère les médias depuis la table media
-        
-        $medias = Auth::user()->media()->where('vue', 0)->get();
-
-        // Passe les médias à la vue
-       
-        return view('liste', compact('medias'));
+        $categories = Media::distinct('categorie')->pluck('categorie');
+    
+        $selectedCategory = $request->input('categorie');
+    
+        $medias = Auth::user()->media()
+            ->when($selectedCategory, function ($query) use ($selectedCategory) {
+                return $query->where('categorie', $selectedCategory);
+            })
+            ->where('vue', 0)
+            ->get();
+    
+        return view('liste', compact('medias', 'categories', 'selectedCategory'));
     }
 
     

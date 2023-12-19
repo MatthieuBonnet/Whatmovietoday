@@ -1,6 +1,23 @@
 @extends('master')
 
 @section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <form action="{{ route('liste') }}" method="get" class="form-inline">
+                @csrf
+                <label class="mr-2" for="categorie"></label>
+                <select name="categorie" class="form-control mr-2" onchange="this.form.submit()">
+                    <option value="">Toutes les catégories</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category }}" {{ $category == $selectedCategory ? 'selected' : '' }}>
+                            {{ $category }}
+                        </option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
+    </div>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -62,22 +79,15 @@
 
             <a href="{{ route('create-media') }}" class="btn btn-outline-light ">Ajouter un Nouveau Média</a>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+            
         </div>
     </div>
 </div>
+<script>
+    function expandForm() {
+        document.getElementById('filterForm').classList.add('open'); // Ajoutez une classe 'open' lorsque la souris survole le formulaire
+    }
+</script>
 
 <style>
     .table-responsive {
@@ -102,5 +112,16 @@
     .table-bordered td {
         border: 1px solid #000; /* Couleur des bordures noires */
     }
+    .text-right {
+        margin-left: 1104px;
+    }
+
+    .form-control {
+        width: 180px; /* Ajustez la largeur du sélecteur selon vos besoins */
+        transition: width 0.3s ease; /* Ajoutez une transition pour une animation fluide */
+    }
+
+
+
 </style>
 @endsection
